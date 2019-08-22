@@ -4,7 +4,9 @@ function loadHome(){
     document.getElementById("entries-container").innerHTML=`
 <div id="search-section">
     <!-- contains search box and add button -->
+    Search And Add
     <input class="pad" type="text" id="search-box">
+    
     <button class="pad" id="add-button" disabled="disabled" onclick="addItem()">ADD</button>
     <div id="search-results"></div>
 </div>
@@ -89,34 +91,43 @@ function removeItem(id){
 function searchBoxQuery()
 {
     let toFind = document.getElementById('search-box').value.trim();
-    let list="";
+    let list=[];
     data.forEach(element=>{
         if(element.item.toLowerCase().startsWith(toFind.toLowerCase())){
-            list+=element.item+";";
+            list.push(element);
         }     
         
     })
     let button = document.getElementById("add-button");
-    if(list=="")
-    {
-        button.disabled = false;
-        button.style.backgroundColor = "green";
-    }
-            
-    else
+    if(list.length>0 && list[0].item.toLowerCase()==toFind.toLowerCase())
     {
         button.disabled=true;
         button.style.backgroundColor = "red";
     }
+            
+    else
+    {
+        button.disabled = false;
+        button.style.backgroundColor = "green";
+        
+    }
+    let htmlCode="";
+    list.forEach(element => {
+        htmlCode += `<tr>
+                        <td>${element.item}</td>
+                        <td><button onclick="editItemWizard(${data.indexOf(element)})">Edit</button> <button onclick="removeItem(${data.indexOf(element)})">Remove</button></td>
+                    </tr>`
+    });
+    document.getElementById("entry-table").innerHTML = htmlCode;
            
-    let finalList ="<ul>" 
-        list = list.substring(0,list.length)
-        list.split(";").forEach(line=>{
-            finalList+= `<li> ${line} </li>`
-        })
-        finalList+="</ul>"
-        document.getElementById('search-results').innerHTML = finalList;
-        return finalList
+    // let finalList ="<ul>" 
+    //     list = list.substring(0,list.length)
+    //     list.split(";").forEach(line=>{
+    //         finalList+= `<li> ${line} </li>`
+    //     })
+    //     finalList+="</ul>"
+    //     document.getElementById('search-results').innerHTML = finalList;
+    //     return finalList
 }
 
 function addItem(){
