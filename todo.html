@@ -27,20 +27,8 @@
             <div id="search-section">
                 <!-- contains search box and add button -->
                 
-                <input class="pad" type="text" id="search-box" onkeyup="" >
-                <script>
-                function searchBoxQuery()
-                        {
-                            let toFind = document.getElementById('search-box').value
-                            let list="";
-                            data.forEach(element=>{
-                                if(element.item.toLowerCase().startsWith(toFind.toLowerCase())){
-                                    list+=element.item;
-                                }
-                                document.getElementById('search-results').innerHTML = list
-                            })
-                        }
-                </script>
+                <input class="pad" type="text" id="search-box" >
+                 
                 <button class="pad" id="add-button" disabled="disabled" onclick="addItem()">ADD</button>
                 <div id="search-results"></div>
             </div>

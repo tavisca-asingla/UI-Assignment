@@ -63,6 +63,9 @@ img{
   }
 
 #entries-container{
+    overflow:scroll;
+}
+#entries-container{
     height: 100%;
     width: 80%;
     float: left;

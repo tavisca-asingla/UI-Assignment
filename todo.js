@@ -1,10 +1,12 @@
 'use strict'
 // Basic Page Switching Code
 function loadHome(){
-    document.getElementById("entries-container").innerHTML=`            <div id="search-box">
+    document.getElementById("entries-container").innerHTML=`
+<div id="search-section">
     <!-- contains search box and add button -->
-    <input class="pad" id="search-box" type="text" onkeyup="">
-    <button class="pad" disabled="disabled">ADD</button>
+    <input class="pad" type="text" id="search-box">
+    <button class="pad" id="add-button" disabled="disabled" onclick="addItem()">ADD</button>
+    <div id="search-results"></div>
 </div>
 <div id="entries">
     <!-- Entries and Actions Table Here -->
@@ -23,6 +25,7 @@ function loadHome(){
         </tbody>
     </table>
 </div>`;
+document.getElementById("search-box").addEventListener("keydown",eve=>{searchBoxQuery()});
 populateTable();
 }
 
@@ -85,12 +88,16 @@ function removeItem(id){
 
 function searchBoxQuery()
 {
-    let toFind = document.getElementById('search-box').value
+    let toFind = document.getElementById('search-box').value;
     let list="";
     data.forEach(element=>{
         if(element.item.toLowerCase().startsWith(toFind.toLowerCase())){
             list+=element.item;
         }
+        if(list=="")
+            document.getElementById("add-button").disabled=false;
+        else
+            document.getElementById("add-button").disabled=true;
         document.getElementById('search-results').innerHTML = list
     })
 }
@@ -100,3 +107,9 @@ function addItem(){
     data[data.length] = {item: item};
     loadHome();
 }
+
+window.addEventListener("load", function() {
+    document.getElementById("search-box").addEventListener("keydown",eve=>{searchBoxQuery()});
+});
+
+// document.getElementById("search-box").addEventListener("keydown",eve=>{searchBoxQuery()});
