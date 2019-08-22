@@ -79,7 +79,7 @@ function editItem(id){
 
 function removeItem(id){
     data.splice(id,1);
-    populateTable();
+    loadHome();
 }
 
 /*
@@ -88,18 +88,35 @@ function removeItem(id){
 
 function searchBoxQuery()
 {
-    let toFind = document.getElementById('search-box').value;
+    let toFind = document.getElementById('search-box').value.trim();
     let list="";
     data.forEach(element=>{
         if(element.item.toLowerCase().startsWith(toFind.toLowerCase())){
-            list+=element.item;
-        }
-        if(list=="")
-            document.getElementById("add-button").disabled=false;
-        else
-            document.getElementById("add-button").disabled=true;
-        document.getElementById('search-results').innerHTML = list
+            list+=element.item+";";
+        }     
+        
     })
+    let button = document.getElementById("add-button");
+    if(list=="")
+    {
+        button.disabled = false;
+        button.style.backgroundColor = "green";
+    }
+            
+    else
+    {
+        button.disabled=true;
+        button.style.backgroundColor = "red";
+    }
+           
+    let finalList ="<ul>" 
+        list = list.substring(0,list.length)
+        list.split(";").forEach(line=>{
+            finalList+= `<li> ${line} </li>`
+        })
+        finalList+="</ul>"
+        document.getElementById('search-results').innerHTML = finalList;
+        return finalList
 }
 
 function addItem(){
@@ -109,7 +126,7 @@ function addItem(){
 }
 
 window.addEventListener("load", function() {
-    document.getElementById("search-box").addEventListener("keydown",eve=>{searchBoxQuery()});
+    document.getElementById("search-box").addEventListener("keyup",eve=>{searchBoxQuery()});
 });
 
 // document.getElementById("search-box").addEventListener("keydown",eve=>{searchBoxQuery()});

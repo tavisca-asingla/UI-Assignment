@@ -1,10 +1,24 @@
 html, 
 body {
     height: 100%;
+    border-width:5px;  
+    border-style:outset;
+}
+ul{
+    list-style-type:none;
 }
 *{
     box-sizing: border-box;
 }
+
+input[type=text] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 0px 10px;
+    box-sizing: border-box;
+    border: 2px solid red;
+    border-radius: 4px;
+  }
 
 .pad{
     margin: 15px 30px;
@@ -27,6 +41,7 @@ img{
 }
 #header-right{
     height: 100%;
+    width:100%
     float: left;
     padding : 10px 2px;
     border:2px dotted yellow;
@@ -35,7 +50,19 @@ img{
 /* 
     * Main Container Work begins here
 */
-
+#main button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    /* margin: 4px 2px; */
+    cursor: pointer;
+    border-radius: 12px;
+  }
 #main{
     height: 90%;
     width:100%;
@@ -62,6 +89,11 @@ img{
     font-size: 16px;
   }
 
+  button:disabled,
+  button[disabled]{
+    background-color:red;
+}
+
 #entries-container{
     overflow:scroll;
 }
@@ -82,3 +114,16 @@ img{
 #entries-container table *{
     margin: 15px 30px;
 }
+tr:hover {
+    background-color: #ffff99;
+  }
+  table td{ 
+    padding:7px; border:#4e95f4 1px solid;
+}
+/* Define the default color for all the table rows */
+table tr{
+    background: #b8d1f3;
+}
+/*
+    *Search results styling
+/*
