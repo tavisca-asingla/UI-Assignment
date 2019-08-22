@@ -1,4 +1,19 @@
 'use strict'
+
+let data = JSON.parse(localStorage.data);
+// [
+//     {
+//         item : "Pseudo Element"
+//     },
+//     {
+//         item: "Machine Learning"
+//     },
+//     {
+//         item: "BioPic"
+//     }
+// ];
+
+
 // Basic Page Switching Code
 function loadHome(){
     document.getElementById("entries-container").innerHTML=`
@@ -44,17 +59,7 @@ function loadAbout(){
 
 // Main Code 
 
-let data = [
-    {
-        item : "Pseudo Element"
-    },
-    {
-        item: "Machine Learning"
-    },
-    {
-        item: "BioPic"
-    }
-];
+
 
 function populateTable(){
     let htmlCode = '';
@@ -76,11 +81,13 @@ function editItemWizard(id){
 function editItem(id){
     let newValue = document.getElementById("edit-item").value;
     data[id] = {item : newValue}
+    localStorage.data = JSON.stringify(data);
     loadHome();
 }
 
 function removeItem(id){
     data.splice(id,1);
+    localStorage.data = JSON.stringify(data);
     loadHome();
 }
 
@@ -133,6 +140,7 @@ function searchBoxQuery()
 function addItem(){
     let item = document.getElementById('search-box').value
     data[data.length] = {item: item};
+    localStorage.data = JSON.stringify(data);
     loadHome();
 }
 
