@@ -1,18 +1,6 @@
 'use strict'
 
 let data = JSON.parse(localStorage.data);
-// [
-//     {
-//         item : "Pseudo Element"
-//     },
-//     {
-//         item: "Machine Learning"
-//     },
-//     {
-//         item: "BioPic"
-//     }
-// ];
-
 
 // Basic Page Switching Code
 function loadHome(){
@@ -42,7 +30,14 @@ function loadHome(){
         </tbody>
     </table>
 </div>`;
-document.getElementById("search-box").addEventListener("keydown",eve=>{searchBoxQuery()});
+// document.getElementById("search-box").addEventListener("keydown",eve=>{searchBoxQuery()});
+document.getElementById("search-box").addEventListener("keyup",eve=>{
+    searchBoxQuery();
+    if (eve.keyCode === 13) {
+        eve.preventDefault();
+        document.getElementById("add-button").click();
+      }
+});
 populateTable();
 }
 
@@ -56,10 +51,7 @@ function loadAbout(){
     JavaScript. This is just a User Interface without any backend and hence all your saved data may disappear on shutdown of this application or Browser`
 }
 
-
 // Main Code 
-
-
 
 function populateTable(){
     let htmlCode = '';
@@ -106,7 +98,7 @@ function searchBoxQuery()
         
     })
     let button = document.getElementById("add-button");
-    if(list.length>0 && list[0].item.toLowerCase()==toFind.toLowerCase())
+    if((list.length>0 && list[0].item.toLowerCase()==toFind.toLowerCase())||toFind.trim()=="")
     {
         button.disabled=true;
         button.style.backgroundColor = "red";
@@ -126,15 +118,6 @@ function searchBoxQuery()
                     </tr>`
     });
     document.getElementById("entry-table").innerHTML = htmlCode;
-           
-    // let finalList ="<ul>" 
-    //     list = list.substring(0,list.length)
-    //     list.split(";").forEach(line=>{
-    //         finalList+= `<li> ${line} </li>`
-    //     })
-    //     finalList+="</ul>"
-    //     document.getElementById('search-results').innerHTML = finalList;
-    //     return finalList
 }
 
 function addItem(){
@@ -145,7 +128,11 @@ function addItem(){
 }
 
 window.addEventListener("load", function() {
-    document.getElementById("search-box").addEventListener("keyup",eve=>{searchBoxQuery()});
+    document.getElementById("search-box").addEventListener("keyup",eve=>{
+        searchBoxQuery();
+        if (eve.keyCode === 13) {
+            eve.preventDefault();
+            document.getElementById("add-button").click();
+          }
+    });
 });
-
-// document.getElementById("search-box").addEventListener("keydown",eve=>{searchBoxQuery()});

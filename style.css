@@ -3,6 +3,8 @@ body {
     height: 100%;
     border-width:5px;  
     border-style:outset;
+    min-width: 440px;
+    min-height: 420px;
 }
 ul{
     list-style-type:none;
@@ -41,7 +43,7 @@ img{
 }
 #header-right{
     height: 100%;
-    width:100%
+    width:80%;
     float: left;
     padding : 10px 2px;
     border:2px dotted yellow;
@@ -59,10 +61,23 @@ img{
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
-    /* margin: 4px 2px; */
     cursor: pointer;
     border-radius: 12px;
   }
+
+  #menu button {
+    background-color: rgba(92, 154, 206, 0.637); /* Green */
+    min-width: 60px;
+    height: 50px;
+    width: 40%;
+    color: white;
+    margin: 15px 10%;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+  }
+
 #main{
     height: 90%;
     width:100%;
@@ -76,18 +91,7 @@ img{
     float: left;
     border:2px dotted yellow;
 }
-#menu button {
-    background-color: rgba(92, 154, 206, 0.637); /* Green */
-    border: none;
-    height: 50px;
-    width: 100px;
-    color: white;
-    margin: 15px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    font-size: 16px;
-  }
+
 
   button:disabled,
   button[disabled]{
@@ -123,6 +127,9 @@ tr:hover {
 /* Define the default color for all the table rows */
 table tr{
     background: #b8d1f3;
+}
+#entries{
+    margin-left: 9%
 }
 /*
     *Search results styling
