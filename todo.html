@@ -21,33 +21,21 @@
         <div id="menu">
             <button onclick="loadHome()">TO_DO</button>
             <button id="special" onclick="loadUses()">Uses</button>
-            <button onclick="loadAbout()">About</button>
+            <button  onclick="loadAbout()">About</button>
         </div>
         <div id="entries-container">
             <div id="search-section">
                 <!-- contains search box and add button -->
-                
-                <input class="pad" type="text" id="search-box" onkeyup="" >
-                <script>
-                function searchBoxQuery()
-                        {
-                            let toFind = document.getElementById('search-box').value
-                            let list="";
-                            data.forEach(element=>{
-                                if(element.item.toLowerCase().startsWith(toFind.toLowerCase())){
-                                    list+=element.item;
-                                }
-                                document.getElementById('search-results').innerHTML = list
-                            })
-                        }
-                </script>
+                Search And Add
+                <input class="pad" type="text" id="search-box" >
+                 
                 <button class="pad" id="add-button" disabled="disabled" onclick="addItem()">ADD</button>
-                <div id="search-results"></div>
+                
             </div>
             <div id="entries">
                 <!-- Entries and Actions Table Here -->
                 
-                <table >
+                <table id="table-container">
                         
                     <thead>
                         <tr>
@@ -61,8 +49,7 @@
                     
                 </table>
                 <script>
-                        populateTable();
-                        
+                        populateTable();                        
                 </script>
             </div>
         </div>
